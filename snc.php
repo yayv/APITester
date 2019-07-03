@@ -40,8 +40,11 @@ function loaddata($project, $api)
 
 	$req->headers[] = "Host:".$pu['host'].$pu['port'];
 
-	$req->body = file_get_contents("./data/$project/$api/$api.body");
-
+	if(is_file("./data/$project/$api/$api.body"))
+		$req->body = file_get_contents("./data/$project/$api/$api.body");
+	else
+		$req->body = "";
+	
 	return $req;
 }
 
