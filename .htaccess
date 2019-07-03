@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteBase /APITester/
+
+RewriteCond %{REQUEST_URI} !^/v/.*/(image|images|css|js)/.*
+RewriteRule ^(.*)$  index.php
+
