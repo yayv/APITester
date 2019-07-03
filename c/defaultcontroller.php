@@ -9,8 +9,28 @@ class defaultcontroller extends CommonController
 	
 	public function index()
 	{
-		echo "Hello, default controller!";
-		phpinfo();
+		$projects = array();
+		if(is_dir("./data"))
+		{
+			$d = dir("./data");
+			while (false !== ($entry = $d->read())) {
+				if($entry=='.' || $entry=='..')
+				{
+					continue;
+				}
+				if(is_dir("./data/".$entry))
+				{
+					$projects[] = $entry;
+				}
+			}
+			$d->close();
+		}
+
+		echo "项目列表：<br/>";
+		foreach($projects as $k=>$v)
+		{
+			echo $v,"<br/>";
+		}
 	}
 
 	public function hidepage()
